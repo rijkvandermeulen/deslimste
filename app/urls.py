@@ -3,6 +3,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('', views.quiz_view, name='quiz'),
+    path('quiz/<int:game_id>/', views.quiz_view, name='quiz'),
     path('admin/', admin.site.urls),
 ]
