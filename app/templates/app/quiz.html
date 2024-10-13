@@ -74,7 +74,7 @@
             </div>
 
             <!-- Next Question Button -->
-            <button type="button" onclick="goToNextQuestion()">Next Question</button>
+            <button type="button" onclick="goToNextQuestion('{{current_question_id}}')">Next Question</button>
         </div>
 
         <!-- Player 2 -->
@@ -96,9 +96,10 @@
             }
         }
 
-        function goToNextQuestion() {
-            // Placeholder function to handle going to the next question.
-            // You can later link this to a Django view to move to the next question.
+        function goToNextQuestion(current_question_id) {
+            // Redirect to the next question
+            current_question_id = parseInt(current_question_id) + 1;
+            window.location.href = '/quiz/{{ game.id }}/' + current_question_id;
         }
     </script>
 </body>
