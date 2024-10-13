@@ -17,7 +17,7 @@
         <div class="player">
             <img src="{% static 'images/player1.png' %}" alt="Player 1 picture">
             <div class="name">{{ game.player_1.name }}</div>
-            <div class="points">{{ game.player_1.points }} points</div>
+            <div id="player_1_points" class="points">{{ game.player_1.points }} points</div>
         </div>
 
         <!-- Question Section -->
@@ -27,47 +27,46 @@
             </div>
             <div class="answers">
                 <div class="checkboxes">
-                    <input type="checkbox" id="player1_answer_1" onclick="showAnswer(1)">
+                    <input type="checkbox" id="player1_answer_1" onclick="showAnswer(1); deductPoints('{{game.player_2.id}}')">
                     <label for="player1_answer_1">{{ game.player_1.name }} guessed</label>
 
-                    <input type="checkbox" id="player2_answer_1" onclick="showAnswer(1)">
+                    <input type="checkbox" id="player2_answer_1" onclick="showAnswer(1); deductPoints('{{game.player_1.id}}')">
                     <label for="player2_answer_1">{{ game.player_2.name }} guessed</label>
                 </div>
                 <div class="answer" id="answer_1">Answer 1: {{ current_question.answer_1 }}</div>
 
                 <div class="checkboxes">
-                    <input type="checkbox" id="player1_answer_2" onclick="showAnswer(2)">
+                    <input type="checkbox" id="player1_answer_2" onclick="showAnswer(2); deductPoints('{{game.player_2.id}}')">
                     <label for="player1_answer_2">{{ game.player_1.name }} guessed</label>
 
-                    <input type="checkbox" id="player2_answer_2" onclick="showAnswer(2)">
+                    <input type="checkbox" id="player2_answer_2" onclick="showAnswer(2); deductPoints('{{game.player_1.id}}')">
                     <label for="player2_answer_2">{{ game.player_2.name }} guessed</label>
                 </div>
                 <div class="answer" id="answer_2">Answer 2: {{ current_question.answer_2 }}</div>
 
-                <!-- Repeat for the remaining answers -->
                 <div class="checkboxes">
-                    <input type="checkbox" id="player1_answer_3" onclick="showAnswer(3)">
+                    <input type="checkbox" id="player1_answer_3" onclick="showAnswer(3); deductPoints('{{game.player_2.id}}')">
                     <label for="player1_answer_3">{{ game.player_1.name }} guessed</label>
 
-                    <input type="checkbox" id="player2_answer_3" onclick="showAnswer(3)">
+                    <input type="checkbox" id="player2_answer_3" onclick="showAnswer(3); deductPoints('{{game.player_1.id}}')">
                     <label for="player2_answer_3">{{ game.player_2.name }} guessed</label>
                 </div>
                 <div class="answer" id="answer_3">Answer 3: {{ current_question.answer_3 }}</div>
 
                 <div class="checkboxes">
-                    <input type="checkbox" id="player1_answer_4" onclick="showAnswer(4)">
+                    <input type="checkbox" id="player1_answer_4" onclick="showAnswer(4); deductPoints('{{game.player_2.id}}')">
                     <label for="player1_answer_4">{{ game.player_1.name }} guessed</label>
 
-                    <input type="checkbox" id="player2_answer_4" onclick="showAnswer(4)">
+                    <input type="checkbox" id="player2_answer_4" onclick="showAnswer(4); deductPoints('{{game.player_1.id}}')">
                     <label for="player2_answer_4">{{ game.player_2.name }} guessed</label>
                 </div>
                 <div class="answer" id="answer_4">Answer 4: {{ current_question.answer_4 }}</div>
 
                 <div class="checkboxes">
-                    <input type="checkbox" id="player1_answer_5" onclick="showAnswer(5)">
+                    <input type="checkbox" id="player1_answer_5" onclick="showAnswer(5); deductPoints('{{game.player_2.id}}')">
                     <label for="player1_answer_5">{{ game.player_1.name }} guessed</label>
 
-                    <input type="checkbox" id="player2_answer_5" onclick="showAnswer(5)">
+                    <input type="checkbox" id="player2_answer_5" onclick="showAnswer(5); deductPoints('{{game.player_1.id}}')">
                     <label for="player2_answer_5">{{ game.player_2.name }} guessed</label>
                 </div>
                 <div class="answer" id="answer_5">Answer 5: {{ current_question.answer_5 }}</div>
@@ -83,7 +82,7 @@
         <div class="player">
             <img src="{% static 'images/player2.png' %}" alt="Player 2 picture">
             <div class="name">{{ game.player_2.name }}</div>
-            <div class="points">{{ game.player_2.points }} points</div>
+            <div id="player_2_points" class="points">{{ game.player_2.points }} points</div>
         </div>
     </div>
 
@@ -98,11 +97,21 @@
             }
         }
 
-        function goToNextQuestion(current_question_id) {
-            // Redirect to the next question
-            current_question_id = parseInt(current_question_id) + 1;
-            window.location.href = '/quiz/{{ game.id }}/' + current_question_id;
+        function deductPoints(loserId) {
+            fetch(`/deduct_points/${loserId}/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log(`Points deducted. New points: ${data.points}`);
+                    if (loserId === '{{game.player_1.id}}') {
+                        document.getElementById('player_1_points').innerText = `${data.points} points`;
+                    } else {
+                        document.getElementById('player_2_points').innerText = `${data.points} points`;
+                    }
+                }
+            });
         }
+
     </script>
 </body>
 </html>
