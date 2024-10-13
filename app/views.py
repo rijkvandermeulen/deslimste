@@ -37,5 +37,7 @@ def next_question(request, game_id, current_question_id=0):
 def deduct_points(request, loser_id):
     player = get_object_or_404(Player, id=loser_id)
     player.points -= 10
+    if player.points < 0:
+        player.points = 0
     player.save()
     return JsonResponse({'status': 'success', 'points': player.points})

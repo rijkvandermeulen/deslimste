@@ -94,6 +94,7 @@ header {
     font-size: 52px;
     font-weight: bold;
     color: #ff6600;
+    margin-bottom: 20px;
 }
 
 .question {
@@ -144,4 +145,48 @@ button {
 
 button:hover {
     background-color: #e65c00;
+}
+
+.hidden {
+    display: none;
+}
+
+.winner {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    color: #ff6600;
+}
+
+.confetti {
+    position: absolute; /* Position relative to the player container */
+    top: 0; /* Position at the top of the container */
+    left: 0; /* Start from the left */
+    width: 100%; /* Full width of the player container */
+    height: 100%; /* Full height of the player container */
+    pointer-events: none; /* Allow clicks to pass through */
+    z-index: 10; /* Make sure it appears above other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confetti::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../images/confetti.png') repeat;
+    animation: confetti-fall 3s linear infinite;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
 }

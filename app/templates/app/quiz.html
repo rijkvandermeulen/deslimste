@@ -22,6 +22,10 @@
             {% endif %}
             <div class="name">{{ game.player_1.name }}</div>
             <div id="player_1_points" class="points">{{ game.player_1.points }} points</div>
+            <div id="player_1_winner" class="winner hidden">
+                <h2>Winner!</h2>
+                <div class="confetti"></div>
+            </div>
         </div>
 
         <!-- Question Section -->
@@ -90,6 +94,10 @@
             {% endif %}
             <div class="name">{{ game.player_2.name }}</div>
             <div id="player_2_points" class="points">{{ game.player_2.points }} points</div>
+            <div id="player_2_winner" class="winner hidden">
+                <h2>Winner!</h2>
+                <div class="confetti"> Winner </div>
+            </div>
         </div>
     </div>
 
@@ -106,17 +114,23 @@
 
         function deductPoints(loserId) {
             fetch(`/deduct_points/${loserId}/`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    console.log(`Points deducted. New points: ${data.points}`);
-                    if (loserId === '{{game.player_1.id}}') {
-                        document.getElementById('player_1_points').innerText = `${data.points} points`;
-                    } else {
-                        document.getElementById('player_2_points').innerText = `${data.points} points`;
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log(`Points deducted. New points: ${data.points}`);
+                        if (loserId === '{{ game.player_1.id }}') {
+                            document.getElementById('player_1_points').innerText = `${data.points} points`;
+                            if (data.points === 0) {
+                                document.getElementById('player_2_winner').classList.remove('hidden');
+                            }
+                        } else {
+                            document.getElementById('player_2_points').innerText = `${data.points} points`;
+                            if (data.points === 0) {
+                                document.getElementById('player_1_winner').classList.remove('hidden');
+                            }
+                        }
                     }
-                }
-            });
+                });
         }
 
     </script>
