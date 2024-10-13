@@ -74,7 +74,9 @@
             </div>
 
             <!-- Next Question Button -->
-            <button type="button" onclick="goToNextQuestion('{{current_question_id}}')">Next Question</button>
+            <button onclick="location.href='{% url 'next_question' game.id current_question_id %}';" type="button">
+                Next Question
+            </button>
         </div>
 
         <!-- Player 2 -->

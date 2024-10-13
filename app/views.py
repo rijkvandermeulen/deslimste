@@ -12,3 +12,8 @@ def quiz_view(request, game_id, current_question_id=0):
         'current_question_id': current_question_id,
     }
     return render(request, 'app/quiz.html', context)
+
+
+def next_question(request, game_id, current_question_id=0):
+    # Placeholder to deduct points from player 1 and 2
+    return quiz_view(request, game_id, current_question_id + 1)
