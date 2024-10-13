@@ -4,6 +4,7 @@ from django.db import models
 class Player(models.Model):
     name = models.CharField(max_length=100)
     points = models.IntegerField(default=10)
+    picture = models.ImageField(upload_to='player_pictures/', null=True, blank=True)
 
 
 class Question(models.Model):

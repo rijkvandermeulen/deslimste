@@ -15,7 +15,11 @@
     <div class="container">
         <!-- Player 1 -->
         <div class="player">
-            <img src="{% static 'images/player1.png' %}" alt="Player 1 picture">
+            {% if game.player_1.picture %}
+                <img src="{{ game.player_1.picture.url }}" alt="{{ game.player_1.name }}" width="150" height="150">
+            {% else %}
+                <img src="{% static 'app/images/player1_default.png' %}" alt="Default player image" width="150" height="150">
+            {% endif %}
             <div class="name">{{ game.player_1.name }}</div>
             <div id="player_1_points" class="points">{{ game.player_1.points }} points</div>
         </div>
@@ -80,7 +84,11 @@
 
         <!-- Player 2 -->
         <div class="player">
-            <img src="{% static 'images/player2.png' %}" alt="Player 2 picture">
+            {% if game.player_2.picture %}
+                <img src="{{ game.player_2.picture.url }}" alt="{{ game.player_2.name }}" width="150" height="150">
+            {% else %}
+                <img src="{% static 'app/images/player2_default.png' %}" alt="Default player image" width="150" height="150">
+            {% endif %}
             <div class="name">{{ game.player_2.name }}</div>
             <div id="player_2_points" class="points">{{ game.player_2.points }} points</div>
         </div>
