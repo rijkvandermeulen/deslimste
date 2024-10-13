@@ -47,14 +47,15 @@ header {
     padding: 20px;
     text-align: center;
     color: white;
-    font-size: 36px;
+    font-size: 64px;
     font-weight: bold;
 }
 
 .container {
     display: flex;
-    justify-content: space-between;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .player, .question-container {
@@ -72,31 +73,32 @@ header {
 }
 
 .question-container {
-    width: 40%; /* Wider for the question */
-    margin: 0 auto; /* Align centrally on the page */
+    width: 40%;
+    margin: 0 auto;
 }
 
 .player img {
-    width: 150px;
-    height: 150px;
+    width: 600px;
+    height: 800px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
 .player .name {
-    font-size: 28px;
+    font-size: 56px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .player .points {
-    font-size: 22px;
+    font-size: 52px;
+    font-weight: bold;
     color: #ff6600;
 }
 
 .question {
-    font-size: 32px; /* Increase size of the question */
-    color: #ff6600;  /* Make the question text orange */
+    font-size: 38px;
+    color: #ff6600;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -104,22 +106,28 @@ header {
 .answers {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .answer {
-    display: none; /* Hide answers by default */
+    display: none;
     margin: 5px 0;
-    font-size: 24px; /* Make the answers bigger */
+    font-size: 38px;
     font-weight: bold;
-    color: #333;  /* Darker text for answers */
+    color: #ff6600;
 }
 
 .checkboxes {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    font-size: 18px;  /* Make text bigger for clarity */
+    font-size: 28px;
+}
+
+.checkboxes input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 
 button {
