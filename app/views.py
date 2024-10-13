@@ -30,7 +30,6 @@ def start_game(request):
 
 
 def next_question(request, game_id, current_question_id=0):
-    # Placeholder to deduct points from player 1 and 2
     return quiz_view(request, game_id, current_question_id + 1)
 
 

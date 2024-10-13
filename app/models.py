@@ -9,11 +9,11 @@ class Player(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
-    answer_1 = models.CharField(max_length=100, default='Answer 1')
-    answer_2 = models.CharField(max_length=100, default='Answer 2')
-    answer_3 = models.CharField(max_length=100, default='Answer 3')
-    answer_4 = models.CharField(max_length=100, default='Answer 4')
-    answer_5 = models.CharField(max_length=100, default='Answer 5')
+    answer_1 = models.CharField(max_length=100, null=True, blank=True)
+    answer_2 = models.CharField(max_length=100, null=True, blank=True)
+    answer_3 = models.CharField(max_length=100, null=True, blank=True)
+    answer_4 = models.CharField(max_length=100, null=True, blank=True)
+    answer_5 = models.CharField(max_length=100, null=True, blank=True)
 
 
 class QuestionSet(models.Model):

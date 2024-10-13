@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
-    <title>Sport Quiz</title>
+    <title>Game Page</title>
 </head>
 <body>
     <header>
@@ -16,9 +16,9 @@
         <!-- Player 1 -->
         <div class="player">
             {% if game.player_1.picture %}
-                <img src="{{ game.player_1.picture.url }}" alt="{{ game.player_1.name }}" width="150" height="150">
+                <img src="{{ game.player_1.picture.url }}" alt="{{ game.player_1.name }}">
             {% else %}
-                <img src="{% static 'app/images/player1_default.png' %}" alt="Default player image" width="150" height="150">
+                <img src="{% static 'app/images/player1_default.png' %}" alt="Default player image">
             {% endif %}
             <div class="name">{{ game.player_1.name }}</div>
             <div id="player_1_points" class="points">{{ game.player_1.points }} points</div>
@@ -88,9 +88,9 @@
         <!-- Player 2 -->
         <div class="player">
             {% if game.player_2.picture %}
-                <img src="{{ game.player_2.picture.url }}" alt="{{ game.player_2.name }}" width="150" height="150">
+                <img src="{{ game.player_2.picture.url }}" alt="{{ game.player_2.name }}">
             {% else %}
-                <img src="{% static 'app/images/player2_default.png' %}" alt="Default player image" width="150" height="150">
+                <img src="{% static 'app/images/player2_default.png' %}" alt="Default player image">
             {% endif %}
             <div class="name">{{ game.player_2.name }}</div>
             <div id="player_2_points" class="points">{{ game.player_2.points }} points</div>

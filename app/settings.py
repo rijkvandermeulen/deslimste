@@ -3,11 +3,13 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 DEBUG = True
+
 ROOT_URLCONF = "app.urls"
 SECRET_KEY = "django"
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 INSTALLED_APPS = [
     'django.db.backends.sqlite3',
@@ -52,6 +54,3 @@ TEMPLATES = [
         },
     },
 ]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
